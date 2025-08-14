@@ -5,7 +5,8 @@ public:
         vector<int> time(n);
         
         for (int i = 0; i < n; i++) {
-            time[i] = (dist[i] + speed[i] - 1) / speed[i]; 
+            time[i] = ceil((double)dist[i] / speed[i]);
+
         }
         
         sort(time.begin(), time.end());

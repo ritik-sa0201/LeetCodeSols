@@ -1,11 +1,11 @@
 class Solution {
     int cnt = 0, ans = -1;
 
-    int countSubtree(long long prefix, int n) {
+    int countSubtree(long long i, int n) {
         int count = 0;
-        long long first = prefix, last = prefix;
+        long long first = i, last = i;
         while (first <= n) {
-            count += int(std::min(n + 1LL, last + 1LL) - first);
+            count += int(min(n + 1LL, last + 1LL) - first);
             first *= 10;
             last = last * 10 + 9;
         }

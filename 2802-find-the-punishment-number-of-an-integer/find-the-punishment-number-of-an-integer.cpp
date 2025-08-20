@@ -11,7 +11,7 @@ class Solution {
   
   bool isPossible(int i,int n,int len){
      if(n==i)return true;
-     while(len>0){
+     while(len!=1){
        int q=n/len;
        int rem = n%len;
        if(isPossible(i-q,rem,len/10)){

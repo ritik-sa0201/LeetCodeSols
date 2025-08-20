@@ -1,16 +1,23 @@
 class Solution {
     int cnt = 0, ans = -1;
 
-    int countSubtree(long long i, int n) {
-        int count = 0;
-        long long first = i, last = i;
-        while (first <= n) {
-            count += int(min(n + 1LL, last + 1LL) - first);
-            first *= 10;
-            last = last * 10 + 9;
+int countSubtree(long long i, int n) {
+    int count = 0;
+    long long first = i, last = i;
+
+    while (first <= n) {
+        if (n >= first && n <= last) {
+            count += int(n - first + 1);
+            break; 
         }
-        return count;
+        else {
+            count += int(last - first + 1);
+        }
+        first *= 10;
+        last = last * 10 + 9;
     }
+    return count;
+}
 
     void solve(long long i, int n, int k) {
         if (i > n || ans != -1) return;

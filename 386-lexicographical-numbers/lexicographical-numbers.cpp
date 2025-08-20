@@ -4,6 +4,7 @@ void solve(int i,int n,vector<int>&ans){
     ans.push_back(i);
     for(int j=0;j<=9;j++){
         int no = i*10+j;
+        if (no > n) return;
         solve(no,n,ans);
         
     }

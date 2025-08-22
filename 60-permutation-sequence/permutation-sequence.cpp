@@ -7,7 +7,7 @@ class Solution {
     return ans;
   }
 
-  // cnt is shared by reference and we only increment at leaves
+  
   void solve(string op, int i, int k, int &cnt) {
     if (!ans.empty()) return;
     if (i == (int)op.size() - 1) {
@@ -15,11 +15,7 @@ class Solution {
       if (cnt == k) ans = op;
       return;
     }
-
-    // <-- minimal change: ensure suffix is sorted so children are generated
-    // in lexicographic order
     sort(op.begin() + i, op.end());
-
     for (int j = i; j < (int)op.size(); j++) {
       swap(op[i], op[j]);
       solve(op, i + 1, k, cnt);
@@ -31,7 +27,7 @@ class Solution {
 public:
   string getPermutation(int n, int k) {
     int facto = fact(n);
-    int pnc = facto / n; // (n-1)!
+    int pnc = facto / n; 
 
     int first_dig = (k + pnc - 1) / pnc;
     string op = "";
@@ -46,7 +42,7 @@ public:
     k = k % pnc;
     if (k == 0) k = pnc;
 
-    if (op.size() == 1) return op; // handle n == 1
+    if (op.size() == 1) return op; 
 
     int cnt = 0;
     solve(op, 1, k, cnt);

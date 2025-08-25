@@ -1,36 +1,29 @@
 class Solution {
-public:
-    char kthCharacter(long long k, const std::vector<int>& operations) {
-       if (k == 1) {
-            return 'a';
+   
+     char solve(int i,long long k,vector<int>& operations){
+        if(i==0) return 'a';
+        long long mid=0;
+        if(i>=63){
+            mid=k+1;
         }
+        else mid=1LL<<(i-1);
 
-        int n = operations.size();  
-        int opType;                 
-        long long len = 1;          
-        long long newK; 
-
-        
-        for (int i = 0; i < n; i++) {
-            len *= 2;              
-            if (len >= k) {      
-                opType = operations[i]; 
-                newK = k - len / 2; 
-                break;           
+        if(k <= mid){
+           return solve(i-1,k,operations);
+        }
+        else {
+            char ch = solve(i-1,k-mid,operations);
+            if(operations[i-1] == 1){
+                if(ch == 'z') return 'a';
+                return ch + 1;
             }
+            return ch;
         }
+     }
 
-   
-        char res = kthCharacter(newK, operations);
-        
-      
-        if (opType == 0) 
-            return res;
-
-   
-        if (res == 'z') 
-            return 'a';
-        
-        return res + 1;   
+public:
+    char kthCharacter(long long k, vector<int>& operations) {
+        return solve((int)operations.size(),k,operations); 
+  
     }
 };

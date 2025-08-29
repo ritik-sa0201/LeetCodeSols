@@ -1,5 +1,5 @@
 class Solution {
-    int count=-1;
+    int count=0;
 
    void solve(int i,vector<int>&nums,int k,vector<int>&op){
     if(i==nums.size()){
@@ -23,6 +23,6 @@ public:
     int beautifulSubsets(vector<int>& nums, int k) {
          vector<int>op;
          solve(0,nums,k,op);
-         return count;
+         return count-1;
     }
 };

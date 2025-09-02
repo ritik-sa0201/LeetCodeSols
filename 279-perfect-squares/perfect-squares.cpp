@@ -8,6 +8,7 @@ class Solution {
 
         if (sqrs[i] <= n) {
             ans = min(ans, 1 + solve(i, sqrs, n - sqrs[i], dp));
+            ans = min(ans,1+solve(i+1,sqrs,n-sqrs[i],dp));
         }
         ans = min(ans, solve(i + 1, sqrs, n, dp));
 

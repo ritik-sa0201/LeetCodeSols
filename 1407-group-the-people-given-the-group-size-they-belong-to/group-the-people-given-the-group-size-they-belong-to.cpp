@@ -13,15 +13,16 @@ public:
             int k=0;
             vector<int>temp;
             while(i<it.second.size()){
+                
                     temp.push_back(it.second[i]);
+                     k++;
                     i++;
-                    k++;
                  if(k==sz){
                     ans.push_back(temp);
                     temp.clear();
                     k=0;
                  }
-                    
+                   
             }
         }
         return ans;

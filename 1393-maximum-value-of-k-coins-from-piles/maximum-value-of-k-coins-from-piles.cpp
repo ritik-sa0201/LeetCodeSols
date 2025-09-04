@@ -8,7 +8,8 @@ class Solution {
         if (i >= m) return 0;
         if (dp[i][k] != -1) return dp[i][k];
 
-        int ans = solve(i+1, piles, k); 
+        int ans = 0; 
+        ans = max(ans,solve(i+1, piles, k));
         int len = piles[i].size();
         int sum = 0;
         for (int idx = 0; idx <len; idx++) {

@@ -13,11 +13,11 @@ public:
             if(num2>num1)return -1;
 
             
-        for (int steps = 0; steps <= 60; steps++) { 
-            long long diff = num1 - (num2) * 1LL*steps; 
+        for (int i = 0; i <= 60; i++) { 
+            long long diff = num1 - (num2)*1LL*i; 
             int bits = countBits(diff); 
-            if (bits <= steps && steps <= diff) { 
-                return steps; 
+            if (bits <= i && i<=diff) { 
+                return i; 
             } 
         } 
  

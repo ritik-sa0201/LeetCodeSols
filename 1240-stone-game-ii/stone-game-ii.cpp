@@ -8,7 +8,7 @@ class Solution {
 
         int n = piles.size();
         int ans = 0;
-
+        int a2=INT_MAX;
         if(t==0){
             int sum=0;
             for(int j=i;j<n && j<i+2*m;j++){
@@ -16,15 +16,12 @@ class Solution {
                 ans = max(ans,sum+solve(j+1,max(m,j-i+1),1,piles,dp));
             }
         } else { 
-            ans = INT_MAX;
-            int sum=0;
             for(int j=i;j<n && j<i+2*m;j++){
-                sum+=piles[j];
-                ans = min(ans,solve(j+1,max(m,j-i+1),0,piles,dp));
+               a2= min(a2,solve(j+1,max(m,j-i+1),0,piles,dp));
             }
         }
 
-        return dp[i][m][t] = ans;
+        return dp[i][m][t] = t==0?ans:a2;
     }
 
 public:

@@ -1,39 +1,36 @@
 class Solution {
 public:
 
-    long long fn(int num){
-        if(num<=0)return 0;
-        if(num<=3)return num;
-        int cnt=2;
-        int pre=3;
-        long long ans=3;
-        for(int i=4;i<=num;i*=4){
-            long long upper=1LL*i*4-1;
-            long long range=0;
-            if(upper>=num){
-                range=num-pre;
-            }else{
-                range=upper-pre;
+    long long solve(int l, int r) {
+        long long L = 1; 
+        long long S = 1;
+        long long steps = 0;
+
+        while(L <= r) {
+            long long R = 4*L - 1;
+            long long start = max(L, (long long)l);
+            long long end   = min(R, (long long)r);
+            if(start <= end) {
+                steps += (end-start+1)*S;
             }
-            pre=upper;
-            ans+=(1LL*range*cnt);
-            cnt++;
+            S += 1;
+            L = L*4;
         }
-        return ans;
+        return steps;
     }
 
     long long minOperations(vector<vector<int>>& queries) {
-        long long ans=0;
+        long long result = 0;
 
-        for(auto q:queries){
-            int left=q[0],right=q[1];
+        for(auto &query : queries) {
+            int l = query[0];
+            int r = query[1];
 
-            long long val1=fn(right);
-            long long val2=fn(left-1);
-            long long diff=val1-val2;
-            if(diff%2)diff++;
-            ans+=(diff/2);
+            long long steps = solve(l, r);
+
+            result += (steps+1)/2;
         }
-        return ans;
+
+        return result;
     }
 };
